@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>App Opener</title>
+</head>
+<body>
+  <h1>App Opener</h1>
+
+  <ul>
+    <li><a href="https://youtube.com/@shyambhai420">Open My App</a></li>
+    <!-- <li><a href="anotherapp://open">Open Another App</a></li> -->
+  </ul>
+
+  <script>
+    // Function to handle the link click event
+    function handleAppLink(event) {
+      event.preventDefault();
+      var appURL = event.target.href;
+      
+      // Check if the app is available on the device
+      if (navigator.userAgent.match(/(iPad|iPhone|iPod|Android)/)) {
+        window.location = appURL;
+      } else {
+        // Redirect to a fallback URL or show an error message
+        window.location = "https://example.com/app-not-available";
+      }
+    }
+    
+    // Attach the event listener to all app links
+    var appLinks = document.querySelectorAll('a[href^="myapp://"], a[href^="anotherapp://"]');
+    appLinks.forEach(function(link) {
+      link.addEventListener('click', handleAppLink);
+    });
+  </script>
+</body>
+</html>
